@@ -66,7 +66,7 @@ void ScriptPubKeyToJSON(const Config &config, const CScript &scriptPubKey,
       legacy.push_back(EncodeLegacyAddr(addr, legacy_params));
     }
     out.push_back(Pair("addresses", a));
-    out.push_back(Pair("legacy_addresses", legacy));
+    out.push_back(Pair("legacyAddresses", legacy));
 }
 
 void TxToJSON(const Config &config, const CTransaction &tx,
