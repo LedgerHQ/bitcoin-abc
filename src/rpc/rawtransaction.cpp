@@ -60,7 +60,13 @@ void ScriptPubKeyToJSON(const Config &config, const CScript &scriptPubKey,
         a.push_back(EncodeDestination(addr));
     }
 
+    UniValue legacy(UniValue::VARR);
+    CChainParams legacy_params = GetConfig().GetChainParams();
+    for (const CTxDestination &addr : addresses) {
+      legacy.push_back(EncodeLegacyAddr(addr, legacy_params));
+    }
     out.push_back(Pair("addresses", a));
+    out.push_back(Pair("legacy_addresses", legacy));
 }
 
 void TxToJSON(const Config &config, const CTransaction &tx,
